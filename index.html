@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typewriter Poetry</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="poetry-container">
+        <p id="poetry"></p>
+    </div>
+    <script src="poetry.js"></script>
+    <script>
+        // Typewriter effect function
+        function typeWriter(text, elementId, delay = 100) {
+            const element = document.getElementById(elementId);
+            let charIndex = 0;
+
+            function typeCharacter() {
+                if (charIndex < text.length) {
+                    element.innerHTML += text[charIndex] === '\n' ? '<br>' : text[charIndex];
+                    charIndex++;
+                    setTimeout(typeCharacter, delay);
+                }
+            }
+
+            typeCharacter();
+        }
+
+        // Start the typewriter effect when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const fullPoetry = poetryLines.join('\n'); // Combine lines with line breaks
+            typeWriter(fullPoetry, 'poetry', 100); // Adjust delay as needed
+        });
+    </script>
+</body>
+</html>

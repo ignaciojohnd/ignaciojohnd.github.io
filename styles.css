@@ -1,0 +1,27 @@
+/* styles.css */
+body {
+    font-family: 'Georgia', serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.poetry-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#poetry {
+    font-size: 2rem;
+    color: #333;
+    line-height: 1.5;
+    white-space: pre-line; /* Preserve line breaks */
+    text-align: center;
+}
