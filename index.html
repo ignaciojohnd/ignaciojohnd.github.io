@@ -10,28 +10,56 @@
     <div class="poetry-container">
         <p id="poetry"></p>
     </div>
-    <script src="poetry.js"></script>
+    <script src="output.js"></script>
     <script>
-        // Typewriter effect function
-        function typeWriter(text, elementId, delay = 100) {
-            const element = document.getElementById(elementId);
-            let charIndex = 0;
+        // Function to shuffle an array
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+            }
+            return array;
+        }
 
-            function typeCharacter() {
-                if (charIndex < text.length) {
-                    element.innerHTML += text[charIndex] === '\n' ? '<br>' : text[charIndex];
-                    charIndex++;
-                    setTimeout(typeCharacter, delay);
+        // Typewriter effect for clickable links
+        function typeWriterWithLinks(lines, elementId, charDelay, lineDelay) {
+            const element = document.getElementById(elementId);
+            let lineIndex = 0;
+
+            function typeCharacter(line, linkElement, charIndex) {
+                if (charIndex < line.length) {
+                    linkElement.textContent += line[charIndex]; // Add one character at a time
+                    setTimeout(() => typeCharacter(line, linkElement, charIndex + 1), charDelay);
+                } else {
+                    lineIndex++; // Move to the next line
+                    setTimeout(typeNextLine, lineDelay); // Wait before typing the next line
                 }
             }
 
-            typeCharacter();
+            function typeNextLine() {
+                if (lineIndex < lines.length) {
+                    const entry = lines[lineIndex];
+                    
+                    // Create a clickable link for the current line
+                    const linkElement = document.createElement('a');
+                    linkElement.href = `https://www.gutenberg.org/ebooks/${entry.gid}`;
+                    linkElement.target = '_blank';
+                    linkElement.style.display = 'block'; // Ensure each link is on its own line
+
+                    element.appendChild(linkElement); // Add the link to the container
+
+                    // Start typing characters for the current line
+                    typeCharacter(entry.s, linkElement, 0);
+                }
+            }
+
+            typeNextLine(); // Start typing the first line
         }
 
-        // Start the typewriter effect when the page loads
+        // Start when the page loads
         document.addEventListener('DOMContentLoaded', () => {
-            const fullPoetry = poetryLines.join('\n'); // Combine lines with line breaks
-            typeWriter(fullPoetry, 'poetry', 100); // Adjust delay as needed
+            const shuffledData = shuffleArray(data); // Shuffle the data
+            typeWriterWithLinks(shuffledData, 'poetry', 50, 100); // Adjust delays as needed
         });
     </script>
 </body>
