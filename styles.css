@@ -18,6 +18,13 @@ body {
     box-sizing: border-box;
 }
 
+/* Remove blue color and underline for links */
+.poetry-container a {
+    text-decoration: none; /* Remove underline */
+    color: inherit;       /* Use the same color as surrounding text */
+    cursor: pointer;      /* Keep the pointer cursor for clickable links */
+}
+
 #poetry {
     font-size: 2rem;
     color: #333;
