@@ -1,15 +1,18 @@
 # gutenberg-cento
 
+gutenbergcento.com
+
 Media: Website, Experimental Poetry
 
-Title: The Eternal Cento / The Cento of Babel
+Title: Gutenberg Cento
 
- 
+This website is a cento that never ends. A cento is a sort of “patchwork” poem in which every line is sourced from a different poem. Gutenberg Cento scrolls through approximately three million lines of poetry sourced from a website called Project Gutenberg, an archive of literary works in the public domain. Gutenberg Cento takes three seconds on average to write a line, and because there are about three million lines, it takes about 104 days to finish. The lines are randomized and no line is repeated, meaning each instance of Gutenberg Cento when the page is loaded is different. The permutations of the Gutenberg Cento can be expressed as three million factorial, (3,000,000!), a very big number. This never-ending cento can represent the accumulation of memory as long as we live, how we create stories from these memories and how they are interconnected and shaped from different contexts.
 
-I want to go full circle and make another project about poetry like my first one on Memory. The idea behind this final project is a cento that never ends. A cento is a sort of “patchwork” poem in which every line is sourced from a different poem. My artpiece will be hosted on a website called ‘The Eternal Cento’ or ‘The Cento of Babel’, it will scroll through three million lines of poetry sourced from a website called Project Gutenberg, where literary works in the public domain are stored. The Eternal Cento is not necessarily eternal, but it will take several hours to scroll through these three million lines. The lines will be randomized and no line will be repeated. The theme of my poem, just like my first project, will be about memory. In this case, the never-ending cento will represent the accumulation of memory as long as we live, how we create stories from these memories and how those are shaped from different contexts, the interconnection of our memories, and how our memories cease once we eventually die.
-
- 
 
 Data:
-https://github.com/aparrish/gutenberg-poetry-corpus/tree/master: A Gutenberg Poetry Corpus by Allison Parrish
-https://www.gutenberg.org/: Database of public domain works.
+
+https://github.com/aparrish/gutenberg-poetry-corpus/tree/master
+A Gutenberg Poetry Corpus by Allison Parrish.
+
+https://www.gutenberg.org/
+Database of public domain works.
