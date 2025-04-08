@@ -11,6 +11,45 @@
     <div class="poetry-container">
         <p id="poetry"></p>
     </div>
+
+    <!-- Dark Mode Toggle Button -->
+    <button id="dark-mode-btn">☾</button>
+
+    <!-- Info Button -->
+    <button id="info-btn">?</button>
+
+    <!-- Popup -->
+    <div id="info-popup" class="hidden">
+        <div class="popup-content">
+            <span id="close-popup">&times;</span>
+            <h2>Gutenberg Cento</h2>
+            <p>This website is a cento that never ends. 
+                A 
+                <a href="https://en.wikipedia.org/wiki/Cento_(poetry)" target="_blank">cento</a>
+                 is a sort of “patchwork” poem in which every line is sourced from a different poem. 
+                Gutenberg Cento scrolls through approximately three million lines of poetry sourced from a website called 
+                <a href="https://www.gutenberg.org/" target="_blank">Project Gutenberg</a>
+                , an archive of literary works in the public domain. 
+                Gutenberg Cento takes three seconds on average to write a line, and because there are about three million lines, it takes about 104 days to finish. 
+                The lines are randomized and no line is repeated, meaning each instance of Gutenberg Cento created when the page is loaded is different. 
+                The permutations of the Gutenberg Cento can be expressed as three million factorial, (3,000,000!), a very big number. 
+                This never-ending cento can represent the accumulation of memory as long as we live, how we create stories from these memories and how they are interconnected and shaped from different contexts.
+                <br>
+                <br>
+                Try refreshing the page for a new poem!
+                <br>
+                <br>
+                Gutenberg Cento was created by Jade Ignacio with 
+                <a href="https://github.com/aparrish/gutenberg-poetry-corpus" target="_blank">help</a>
+                 from 
+                <a href="https://portfolio.decontextualize.com/" target="_blank">Allison Parrish</a>
+                .
+
+
+            </p>
+        </div>
+    </div>
+
     <script src="output_part_1.js"></script>
     <script src="output_part_2.js"></script>
     <script src="output_part_3.js"></script>
@@ -42,6 +81,11 @@
             }
 
             function typeNextLine() {
+                if (lineIndex >= lines.length) {
+                    lineIndex = 0; // Reset index
+                    lines = shuffleArray(lines); // Shuffle again before restarting
+                }
+            
                 if (lineIndex < lines.length) {
                     const entry = lines[lineIndex];
                     
@@ -50,12 +94,38 @@
                     linkElement.href = `https://www.gutenberg.org/ebooks/${entry.gid}`;
                     linkElement.target = '_blank';
                     linkElement.style.display = 'block'; // Ensure each link is on its own line
+                    linkElement.classList.add('poetry-line'); // Assign class for styling
+
+                    // Remove old lines if there are more than 20
+                    if (element.children.length > 5) {
+                        element.removeChild(element.firstChild); // Delete the first (oldest) line
+                    }
 
                     element.appendChild(linkElement); // Add the link to the container
 
                     // Start typing characters for the current line
                     typeCharacter(entry.s, linkElement, 0);
+
+                    updateStyles();
                 }
+            }
+
+            function updateStyles() {
+                const lines = document.querySelectorAll('.poetry-line');
+                const totalLines = lines.length;
+
+                // console.log("Updating styles for", totalLines, "lines."); // Debugging
+                
+                lines.forEach((line, index) => {
+                    let reverseIndex = totalLines - index - 1; // Reverse order
+                    let progress = reverseIndex / totalLines; // Normalize index (0 to 1 range)
+
+                    let opacity = 1 - progress * 0.8; // Topmost lines fade more
+                    let scale = 1 - progress * 0.4; // Topmost lines shrink more
+
+                    line.style.opacity = opacity;
+                    line.style.transform = `scale(${scale})`;
+                });
             }
 
             typeNextLine(); // Start typing the first line
@@ -66,6 +136,62 @@
             const combinedData = [...data_part1, ...data_part2, ...data_part3, ...data_part4, ...data_part5];
             const shuffledData = shuffleArray(combinedData); // Shuffle the combined data
             typeWriterWithLinks(shuffledData, 'poetry', 50, 100); // Adjust delays as needed
+        });
+    </script>
+
+    
+    <script>
+        // Show the popup
+        document.getElementById('info-btn').addEventListener('click', function() {
+            document.getElementById('info-popup').classList.remove('hidden');
+            document.getElementById('info-popup').classList.add('shown');
+        });
+
+        // Hide the popup
+        document.getElementById('close-popup').addEventListener('click', function() {
+            document.getElementById('info-popup').classList.add('hidden');
+            document.getElementById('info-popup').classList.remove('shown');
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const darkModeBtn = document.getElementById("dark-mode-btn");
+            const body = document.body;
+            const poetryContainer = document.querySelector(".poetry-container");
+            const poetryText = document.getElementById("poetry");
+            const infoButton = document.getElementById("info-btn");
+
+
+            // Check if the user has a saved preference
+            if (localStorage.getItem("dark-mode") === "enabled") {
+                body.classList.add("dark-mode");
+                poetryText.style.color = "#ffffff";  // Set poetry text to white
+                infoButton.style.color = "#ffffff";  // Set infoButton text to white
+                darkModeBtn.style.color = "#ffffff";  // Set dark mode button text to white
+                poetryContainer.style.backgroundColor = "#000";  // Set poetry background to black
+                darkModeBtn.textContent = "☼";  // Change button to light mode
+            }
+
+            darkModeBtn.addEventListener("click", function () {
+                if (body.classList.contains("dark-mode")) {
+                    body.classList.remove("dark-mode");
+                    poetryText.style.color = "#333";  // Set poetry text to default color
+                    infoButton.style.color = "#333";  // Set infoButton text to default color
+                    darkModeBtn.style.color = "#333";  // Set dark mode button text to default color
+                    poetryContainer.style.backgroundColor = "#f4f0ec";  // Set poetry background to white
+                    darkModeBtn.textContent = "☾";  // Change button to dark mode
+                    localStorage.setItem("dark-mode", "disabled");
+                } else {
+                    body.classList.add("dark-mode");
+                    poetryText.style.color = "#ffffff";  // Set poetry text to white
+                    infoButton.style.color = "#ffffff";  // Set infoButton text to white
+                    darkModeBtn.style.color = "#ffffff";  // Set dark mode button text to white
+                    poetryContainer.style.backgroundColor = "#000";  // Set poetry background to black
+                    darkModeBtn.textContent = "☼";  // Change button to light mode
+                    localStorage.setItem("dark-mode", "enabled");
+                }
+            });
         });
     </script>
 </body>
