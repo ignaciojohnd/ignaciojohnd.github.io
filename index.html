@@ -30,7 +30,7 @@
                 Gutenberg Cento scrolls through approximately three million lines of poetry sourced from a website called 
                 <a href="https://www.gutenberg.org/" target="_blank">Project Gutenberg</a>
                 , an archive of literary works in the public domain. 
-                Gutenberg Cento takes three seconds on average to write a line, and because there are about three million lines, it takes about 104 days to finish. 
+                Gutenberg Cento takes six seconds on average to write a line, and because there are about three million lines, it takes about 200 days to finish. 
                 The lines are randomized and no line is repeated, meaning each instance of Gutenberg Cento created when the page is loaded is different. 
                 The permutations of the Gutenberg Cento can be expressed as three million factorial, (3,000,000!), a very big number. 
                 This never-ending cento can represent the accumulation of memory as long as we live, how we create stories from these memories and how they are interconnected and shaped from different contexts.
@@ -135,7 +135,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const combinedData = [...data_part1, ...data_part2, ...data_part3, ...data_part4, ...data_part5];
             const shuffledData = shuffleArray(combinedData); // Shuffle the combined data
-            typeWriterWithLinks(shuffledData, 'poetry', 50, 100); // Adjust delays as needed
+            typeWriterWithLinks(shuffledData, 'poetry', 100, 200); // Adjust delays as needed
         });
     </script>
 
