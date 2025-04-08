@@ -1,7 +1,8 @@
 /* styles.css */
 body {
     font-family: 'Georgia', serif;
-    background-color: #f4f4f4;
+    background-color: #f4f0ec;
+    /* background-color: #000000; */
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -13,7 +14,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    background-color: #f4f0ec;
+    /* background-color: #000000; */
     padding: 20px;
     box-sizing: border-box;
 }
@@ -28,7 +30,123 @@ body {
 #poetry {
     font-size: 2rem;
     color: #333;
+    /* color: #ffffff; */
     line-height: 1.5;
     white-space: pre-line; /* Preserve line breaks */
     text-align: center;
+}
+
+.poetry-line {
+    display: block;
+    margin-bottom: 10px; /* Space between lines */
+    font-size: 3rem; /* Default size */
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* Floating Info Button */
+#info-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    color: #333;
+    background: rgba(255, 255, 255, 0.0);
+    opacity: 0.5;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+#info-btn:hover {
+    background: rgba(255, 255, 255, 0.0);
+}
+
+/* Popup Background */
+#info-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+/* Popup Box */
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    position: relative;
+}
+
+.popup-content a {
+    color: #007bff;  /* Blue link color */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.popup-content a:hover {
+    text-decoration: underline;
+}
+
+/* Close Button */
+#close-popup {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.shown {
+    display: flex;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Dark Mode Button */
+#dark-mode-btn {
+    position: fixed;
+    top: 50px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.0);
+    color: #333;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.125rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+    background-color: #111 !important;
+    color: #fff !important;
+}
+
+.dark-mode .popup-content {
+    background-color: #222;
+    color: white;
+    border: 1px solid #444;
+}
+
+/* Dark Mode Styles for Poetry Container */
+.dark-mode .poetry-container {
+    background-color: #000 !important;  /* Set background to black in dark mode */
+}
+
+.dark-mode #poetry {
+    color: white !important;  /* Set poetry text to white in dark mode */
 }
