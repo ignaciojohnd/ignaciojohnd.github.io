@@ -54,7 +54,6 @@
     <script src="output_part_2.js"></script>
     <script src="output_part_3.js"></script>
     <script src="output_part_4.js"></script>
-    <script src="output_part_5.js"></script>
     <script>
         // Function to shuffle an array
         function shuffleArray(array) {
@@ -133,7 +132,7 @@
 
         // Start when the page loads
         document.addEventListener('DOMContentLoaded', () => {
-            const combinedData = [...data_part1, ...data_part2, ...data_part3, ...data_part4, ...data_part5];
+            const combinedData = [...data_part1, ...data_part2, ...data_part3, ...data_part4];
             const shuffledData = shuffleArray(combinedData); // Shuffle the combined data
             typeWriterWithLinks(shuffledData, 'poetry', 100, 200); // Adjust delays as needed
         });
